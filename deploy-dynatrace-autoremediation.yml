@@ -22,6 +22,7 @@
     ansible_controller_api_password: '{{ lookup("env", "TOWER_PASSWORD") }}'
     credentials_dynatrace_token: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'  
   tasks:
+    - shell: env
     - name: "users (block)"
       block:
         - name: "GET users dynatrace user"
