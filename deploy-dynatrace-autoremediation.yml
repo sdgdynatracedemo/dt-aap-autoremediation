@@ -20,7 +20,6 @@
     ansible_controller_api_host: '{{ lookup("env", "CONTROLLER_HOST") }}'
     ansible_controller_api_user: '{{ lookup("env", "CONTROLLER_USERNAME") }}'
     ansible_controller_api_password: '{{ lookup("env", "CONTROLLER_PASSWORD") }}'
-    credentials_dynatrace_token: '{{ lookup("env", "ANSIBLE_NET_PASSWORD") }}'  
   tasks:
     - name: "users (block)"
       block:
