@@ -12,6 +12,13 @@
             owner: root
             group: root
             mode: '0644'
+        - name: Update default site
+          ansible.builtin.template:
+            src: templates/broken-nginx.conf.j2
+            dest: /etc/nginx/nginx.conf
+            owner: root
+            group: root
+            mode: '0644'
         - name: restart nginx service
           ansible.builtin.systemd:
             name: nginx
