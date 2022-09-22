@@ -4,13 +4,19 @@
   hosts: dt_demo
   name: "initiate change with Ansible"
   tasks:
-    - name: Update default site
-      ansible.builtin.template:
-        src: index.html.j2
-        dest: /var/www/{{ domain }}/index.html
-        owner: root
-        group: root
-        mode: '0644'
+    - name: (block) update and restart nginx
+      block:
+        - name: Update default site
+          ansible.builtin.template:
+            src: index.html.j2
+            dest: /var/www/{{ domain }}/index.html
+            owner: root
+            group: root
+            mode: '0644'
+        - name: restart nginx service
+          ansible.builtin.systemd:
+            name: nginx
+            state: restarted
     
     - name: "send Dynatrace custom configuration event with business context information"
       ansible.builtin.uri:
