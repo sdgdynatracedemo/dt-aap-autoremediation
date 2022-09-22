@@ -19,13 +19,15 @@
     
     - name: "send Dynatrace custom configuration event with business context information"
       ansible.builtin.uri:
-        url: "{{ dt_api_url }}/v2/events"
+        url: "{{ dt_api_url }}/v2/events/ingest"
         method: POST
         headers:
           content-type: application/json
           Authorization: "Api-Token {{ dt_api_token }}"
         body:
           eventType: CUSTOM_CONFIGURATION
+          title: "Configuration Change"
+          timeout: 10
           attachRules:
             tagRule:
             - meTypes:
