@@ -1,6 +1,6 @@
 # rollback change
 ---
-- hosts: localhost
+- hosts: "{{ hosts_group }}"
   name: "rollback change with Ansible"
   tasks:
     - name: (block) update and restart nginx

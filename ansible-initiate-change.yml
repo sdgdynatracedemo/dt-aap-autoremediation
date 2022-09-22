@@ -1,7 +1,7 @@
 # initiate change
 ---
 - name: "initiate change with Ansible"
-  hosts: dt_demo
+  hosts: "{{ hosts_group }}"
   tasks:
     - name: (block) update and restart nginx
       block:
