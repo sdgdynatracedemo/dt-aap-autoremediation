@@ -31,7 +31,6 @@
         body:
           eventType: CUSTOM_CONFIGURATION
           title: "Configuration Change"
-          timeout: 10
           attachRules:
             tagRule:
             - meTypes:
