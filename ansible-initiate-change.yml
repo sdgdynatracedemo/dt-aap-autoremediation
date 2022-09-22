@@ -47,4 +47,4 @@
             Change Old: "{{ configuration_old }}"
             Remediation: "{{ configuration_remediation }}"
         body_format: json
-        status_code: 200
+        status_code: 200, 201
