@@ -19,10 +19,6 @@
             owner: root
             group: root
             mode: '0644'
-        - name: restart nginx service
-          ansible.builtin.systemd:
-            name: nginx
-            state: restarted
     
     # https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events-v1/post-event
     - name: "send Dynatrace custom configuration event with business context information"
@@ -55,3 +51,9 @@
             Remediation: "{{ configuration_remediation }}"
         body_format: json
         status_code: 200, 201
+
+
+    - name: restart nginx service
+      ansible.builtin.systemd:
+        name: nginx
+        state: restarted

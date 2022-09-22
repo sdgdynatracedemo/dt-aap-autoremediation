@@ -47,7 +47,6 @@
           description: "{{ configuration_details }}"
           configuration: "{{ configuration_type }}"
           customProperties:
-            Change Ticket: "{{ configuration_change_ticket }}"
             Change New: "{{ configuration_new }}"
             Change Old: "{{ configuration_old }}"
             Remediation: "{{ configuration_remediation }}"
