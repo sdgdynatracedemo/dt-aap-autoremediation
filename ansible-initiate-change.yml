@@ -8,7 +8,7 @@
         - name: Update default site
           ansible.builtin.template:
             src: templates/changed-index.html.j2
-            dest: /var/www/{{ domain }}/index.html
+            dest: /usr/share/nginx/html/index.html
             owner: root
             group: root
             mode: '0644'
