@@ -37,7 +37,7 @@
             tagRule:
             - meTypes:
               - SERVICE
-              - PROCESS_GROUP_INSTANCE
+              - PROCESS_GROUP
               - HOST
               tags:
               - context: CONTEXTLESS
@@ -51,4 +51,4 @@
             Change Old: "{{ configuration_old }}"
             Remediation: "{{ configuration_remediation }}"
         body_format: json
-        status_code: 200
+        status_code: 200, 201
