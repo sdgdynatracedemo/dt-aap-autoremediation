@@ -7,7 +7,7 @@
       block:
         - name: Update default site
           ansible.builtin.template:
-            src: index.html.j2
+            src: templates/changed-index.html.j2
             dest: /var/www/{{ domain }}/index.html
             owner: root
             group: root
@@ -17,6 +17,7 @@
             name: nginx
             state: restarted
     
+    # https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events-v1/post-event
     - name: "send Dynatrace custom configuration event with business context information"
       ansible.builtin.uri:
         url: "{{ dt_api_url }}/v2/events/ingest"
