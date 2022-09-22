@@ -1,7 +1,7 @@
 # initiate change
 ---
 -
-  hosts: localhost
+  hosts: dt_demo
   name: "initiate change with Ansible"
   tasks:
     - name: Update default site
