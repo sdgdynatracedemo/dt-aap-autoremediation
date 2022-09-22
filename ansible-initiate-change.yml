@@ -36,7 +36,7 @@
             tagRule:
             - meTypes:
               - SERVICE
-              - PROCESS_GROUP
+              - PROCESS_GROUP_INSTANCE
               - HOST
               tags:
               - context: CONTEXTLESS
