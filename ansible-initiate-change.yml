@@ -51,6 +51,11 @@
             Remediation: "{{ configuration_remediation }}"
         body_format: json
         status_code: 200, 201
+        register: dynatrace_custom_event
+
+    - name: Show results of API call
+      ansible.builtin.debug:
+        msg: "{{ dynatrace_custom_event }}"
 
 
     - name: restart nginx service
