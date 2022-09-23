@@ -12,7 +12,7 @@
             force: yes
         - name: Restart the application
           ansible.builtin.shell: |
-            pm2 start {{ application_working_dir }}/{{ application_filename }}
+            /usr/local/lib/npm/bin/pm2 start {{ application_working_dir }}/{{ application_filename }}
     
     - name: "push Dynatrace custom deployment event"
       ansible.builtin.uri:
