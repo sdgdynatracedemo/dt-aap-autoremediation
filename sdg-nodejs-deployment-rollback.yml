@@ -3,10 +3,16 @@
 - hosts: localhost
   name: "rollback deployment with Ansible"
   tasks:
-    - name: "rollback a deployment with Ansible task(s)"
-      ansible.builtin.template:
-        src: templates/hello-http.js.j2
-        dest: "{{ application_working_dir }}/{{ application_filename }}"
+    - name: "Rollback nodejs deployment"
+      block:
+        - name: Restore working file
+          ansible.builtin.template:
+            src: "templates/{{ application_filename }}.j2"
+            dest: "{{ application_working_dir }}/{{ application_filename }}"
+            force: yes
+        - name: Restart the application
+          ansible.builtin.shell: |
+            pm2 {{ application_working_dir }}/{{ application_filename }}
     
     - name: "push Dynatrace custom deployment event"
       ansible.builtin.uri:
