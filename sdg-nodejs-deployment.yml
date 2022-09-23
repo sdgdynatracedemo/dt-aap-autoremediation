@@ -3,12 +3,18 @@
 - hosts: "{{ hosts_group }}"
   name: "Initiate deployment with Ansible"
   tasks:
-    - name: "perform a deployment with Ansible task(s)"
-      ansible.builtin.lineinfile:
-        path: "{{ application_working_dir }}/{{ application_filename }}"
-        line: "This should break things"
-        insertbefore: BOF
-        state: present
+    - name: Deploy nodejs update
+      block:
+        - name: Update application file
+          ansible.builtin.lineinfile:
+            path: "{{ application_working_dir }}/{{ application_filename }}"
+            line: "This should break things"
+            insertbefore: BOF
+            state: present
+        - name: Restart the application
+          ansible.builtin.shell: |
+            pm2 restart {{ application_working_dir }}/{{ application_filename }}
+
     
     - name: "push Dynatrace custom deployment event"
       ansible.builtin.uri:
