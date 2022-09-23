@@ -1,0 +1,38 @@
+# rollback deployment
+---
+- hosts: localhost
+  name: "rollback deployment with Ansible"
+  tasks:
+    - name: "rollback a deployment with Ansible task(s)"
+      ansible.builtin.template:
+        src: templates/hello-http.js.j2
+        dest: "{{ application_working_dir }}/{{ application_filename }}"
+    
+    - name: "push Dynatrace custom deployment event"
+      ansible.builtin.uri:
+        url: "{{ dt_api_url }}/v1/events"
+        method: POST
+        headers:
+          content-type: application/json
+          Authorization: "Api-Token {{ dt_api_token }}"
+        body:
+          eventType: CUSTOM_DEPLOYMENT
+          attachRules:
+            tagRule:
+            - meTypes:
+              - SERVICE
+              - PROCESS_GROUP_INSTANCE
+              - HOST
+              tags:
+              - context: CONTEXTLESS
+                key: "{{ deployment_tag_key }}"
+                value: "{{ deployment_tag_value }}"
+          source: "Ansible Automation Platform"
+          deploymentName: "{{ deployment_name }}"
+          deploymentVersion: "{{ deployment_version}}"
+          remediationAction: "{{ deployment_remediation }}"
+          customProperties:
+            Details: "{{ deployment_details }}"
+            Feature Flag: "{{ deployment_feature }}"
+        body_format: json
+        status_code: 200
