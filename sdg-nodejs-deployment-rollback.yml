@@ -1,6 +1,6 @@
 # rollback deployment
 ---
-- hosts: localhost
+- hosts: "{{ hosts_group }}"
   name: "rollback deployment with Ansible"
   tasks:
     - name: "Rollback nodejs deployment"
