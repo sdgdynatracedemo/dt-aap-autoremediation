@@ -3,6 +3,11 @@
 - name: "initiate change with Ansible"
   hosts: "{{ hosts_group }}"
   tasks:
+    - name: Check for nginx
+      ansible.builtin.stat:
+        path: /usr/share/nginx
+      register: nginx_stat
+
     - name: (block) update and restart nginx
       block:
         - name: Update index.html
@@ -24,7 +29,7 @@
             name: nginx
             state: restarted
           ignore_errors: yes
-
+      when: nginx_stat.stat.exists
 
     - name: Create Service Now incident
       servicenow.itsm.incident:
