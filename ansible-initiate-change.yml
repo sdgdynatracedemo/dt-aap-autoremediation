@@ -68,7 +68,7 @@
           description: "{{ configuration_details }}"
           configuration: "{{ configuration_type }}"
           customProperties:
-#Change Ticket: "{{ deployment_change_ticket }}"
+            Change Ticket: "{{ snow_incident.record.number }}"
             Change New: "{{ configuration_new }}"
             Change Old: "{{ configuration_old }}"
             Remediation: "{{ configuration_remediation }}"
