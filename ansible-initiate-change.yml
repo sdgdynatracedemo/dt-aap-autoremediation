@@ -25,6 +25,16 @@
             state: restarted
           ignore_errors: yes
 
+
+    - name: Create Service Now incident
+      servicenow.itsm.incident:
+        state: new
+        caller: Ansible  Automation Platform
+        short_description: "{{ configuration_type }} {{ inventory_hostname }}"
+        description: "{{ configuration_details }}"
+        impact: low
+        urgency: low
+
     
     # https://www.dynatrace.com/support/help/dynatrace-api/environment-api/events-v1/post-event
     - name: "send Dynatrace custom configuration event with business context information"
