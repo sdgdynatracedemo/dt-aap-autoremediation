@@ -34,7 +34,7 @@
     - name: Create Service Now incident
       servicenow.itsm.incident:
         state: new
-        caller: Ansible  Automation Platform
+        caller: ansible_user
         short_description: "{{ configuration_type }} {{ inventory_hostname }}"
         description: "{{ configuration_details }}"
         impact: low
